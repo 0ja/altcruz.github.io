@@ -1,7 +1,7 @@
 const WEBHOOKS = {
-    phone: 'https://discord.com/api/webhooks/1470777402505560146/YqY983Q2RpZ4qeWrqufjKn0apcGL7D2jtwG3TGIQnDAkw1fVFrkWhBbp3d_hBgdMHrjd',
-    f2f: 'https://discord.com/api/webhooks/1470777501608317133/wsQWvXCEnAl_C_c_249G5t_vBq45Spz4lpi_Igo12Ae-sIRBoXsYZdKPwaR5a3Dbvrcv',
-    question: 'https://discord.com/api/webhooks/1470836591617507409/P6N5cA-EyRIYeI9w7r1fcaHjc1FCizEPu3W5jEdOLoWxvxFPFK-zXB1PCY_gMNrJPlXb'
+    phone: 'https://discord.com/api/webhooks/1516909646089158797/sZ0aFm8Ph0VWdLXBtH4_rx5yj2S3Fl4H9HGAbYs76-jpt7mCLoY7kwR802N4dGpdAhtW',
+    f2f: 'https://discord.com/api/webhooks/1516909646089158797/sZ0aFm8Ph0VWdLXBtH4_rx5yj2S3Fl4H9HGAbYs76-jpt7mCLoY7kwR802N4dGpdAhtW',
+    question: 'https://discord.com/api/webhooks/1516909646089158797/sZ0aFm8Ph0VWdLXBtH4_rx5yj2S3Fl4H9HGAbYs76-jpt7mCLoY7kwR802N4dGpdAhtW'
 };
 
 let captchaAnswer;
