@@ -74,12 +74,11 @@ document.getElementById('hookForm')?.addEventListener('submit', function(e) {
         }]
     };
 
-    // YOUR SECURE CLOUDFLARE TUNNEL ENDPOINT
-// Paste this exact line into your script.js file on GitHub:
-const PI_BACKEND_URL = 'https://ringtones-bye-fighting-vehicle.trycloudflare.com/api/submit-lead';
+    // YOUR SECURE PROXY ENDPOINT
+    const PROXY_URL = 'https://my-webhook-proxy-rose.vercel.app/api/submit-lead';
 
-    // Post to your Raspberry Pi backend, passing the method and the payload
-    fetch(PI_BACKEND_URL, {
+    // Post to your Vercel proxy, passing the method and the payload
+    fetch(PROXY_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ method: method, payload: payload })
