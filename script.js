@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-      
         const name = document.getElementById('name').value;
         const age = document.getElementById('age').value;
         const phone = document.getElementById('phone').value;
@@ -65,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const contactMethod = document.getElementById('contactMethod').value;
         const note = document.getElementById('note').value || 'None provided';
 
-    
         const discordPayload = {
             embeds: [
                 {
@@ -115,4 +113,33 @@ document.addEventListener('DOMContentLoaded', () => {
             generateCaptcha(); 
         }
     });
+});
+
+/* ==========================================
+   ANTI-INSPECT PROTECTION CODE
+   ========================================== */
+
+// Disable Right-Click (Prevents "Inspect" context menu)
+document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+});
+
+// Disable common Inspect Element keyboard shortcuts
+document.addEventListener('keydown', (event) => {
+    // Block F12 key
+    if (event.key === 'F12') {
+        event.preventDefault();
+    }
+    // Block Ctrl+Shift+I (Windows) / Cmd+Opt+I (Mac)
+    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key.toLowerCase() === 'i') {
+        event.preventDefault();
+    }
+    // Block Ctrl+Shift+J (Console window)
+    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.key.toLowerCase() === 'j') {
+        event.preventDefault();
+    }
+    // Block Ctrl+U (View Source code page)
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'u') {
+        event.preventDefault();
+    }
 });
