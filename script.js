@@ -1,9 +1,3 @@
-const WEBHOOKS = {
-    phone: 'https://discord.com/api/webhooks/1516909646089158797/sZ0aFm8Ph0VWdLXBtH4_rx5yj2S3Fl4H9HGAbYs76-jpt7mCLoY7kwR802N4dGpdAhtW',
-    f2f: 'https://discord.com/api/webhooks/1516909646089158797/sZ0aFm8Ph0VWdLXBtH4_rx5yj2S3Fl4H9HGAbYs76-jpt7mCLoY7kwR802N4dGpdAhtW',
-    question: 'https://discord.com/api/webhooks/1516909646089158797/sZ0aFm8Ph0VWdLXBtH4_rx5yj2S3Fl4H9HGAbYs76-jpt7mCLoY7kwR802N4dGpdAhtW'
-};
-
 let captchaAnswer;
 
 // --- CAPTCHA & MODAL LOGIC ---
@@ -11,34 +5,45 @@ function generateCaptcha() {
     const num1 = Math.floor(Math.random() * 9) + 1;
     const num2 = Math.floor(Math.random() * 9) + 1;
     captchaAnswer = num1 + num2;
-    document.getElementById('captcha-question').innerText = `Security: ${num1} + ${num2} = `;
+    
+    const questionElement = document.getElementById('captcha-question');
+    if (questionElement) {
+        questionElement.innerText = `Security: ${num1} + ${num2} = `;
+    }
+    
     const input = document.getElementById('captcha-input');
     if (input) input.value = "";
 }
 
 function toggleModal() {
     const modal = document.getElementById('applyModal');
-    if (modal.style.display !== 'flex') {
+    if (!modal) return;
+
+    if (modal.hasAttribute('hidden')) {
         generateCaptcha();
-        modal.style.display = 'flex';
+        modal.removeAttribute('hidden');
+        modal.style.display = 'flex'; 
         document.body.style.overflow = 'hidden';
     } else {
+        modal.setAttribute('hidden', '');
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     }
 }
 
-// Event Listeners for Modal
-document.getElementById('openModalBtn').addEventListener('click', toggleModal);
-document.getElementById('closeModalBtn').addEventListener('click', toggleModal);
+// Event Listeners for Modal Controls
+document.getElementById('openModalBtn')?.addEventListener('click', toggleModal);
+document.getElementById('closeModalBtn')?.addEventListener('click', toggleModal);
 
 // --- FORM SUBMISSION ---
-document.getElementById('hookForm').addEventListener('submit', function(e) {
+document.getElementById('hookForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Honeypot check
-    if (document.getElementById('honeypot').value !== "") return;
+    // Honeypot anti-spam check
+    const honeypot = document.getElementById('honeypot');
+    if (honeypot && honeypot.value !== "") return;
     
+    // Captcha validation
     const userAnswer = parseInt(document.getElementById('captcha-input').value);
     if (userAnswer !== captchaAnswer) {
         alert("Incorrect security answer.");
@@ -51,6 +56,8 @@ document.getElementById('hookForm').addEventListener('submit', function(e) {
     submitBtn.innerText = "Sending Securely...";
 
     const method = document.getElementById('contactMethod').value;
+    
+    // Construct the Discord embed payload exactly like before
     const payload = {
         embeds: [{
             title: "Incoming Lead: " + method.toUpperCase(),
@@ -67,13 +74,18 @@ document.getElementById('hookForm').addEventListener('submit', function(e) {
         }]
     };
 
-    fetch(WEBHOOKS[method], {
+    // YOUR SECURE CLOUDFLARE TUNNEL ENDPOINT
+    const PI_BACKEND_URL = 'https://cameron-toll-ourselves-compatibility.trycloudflare.com/api/submit-lead';
+
+    // Post to your Raspberry Pi backend, passing the method and the payload
+    fetch(PI_BACKEND_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({ method: method, payload: payload })
     })
-    .then(() => {
-        alert('Thank you. SGT CRUZ will be in touch shortly.');
+    .then((res) => {
+        if (!res.ok) throw new Error("Server error");
+        alert('SSG CRUZ will be in touch shortly.');
         toggleModal();
         this.reset();
     })
@@ -83,20 +95,3 @@ document.getElementById('hookForm').addEventListener('submit', function(e) {
         submitBtn.innerText = "Submit Information";
     });
 });
-
-// --- FOOTER TAB SYSTEM ---
-function openTab(evt, tabName) {
-    const tabcontent = document.getElementsByClassName("study-content");
-    const tablinks = document.getElementsByClassName("footer-tab-btn");
-
-    for (let i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove('active-panel');
-    }
-
-    for (let i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
-    }
-
-    document.getElementById(tabName).classList.add('active-panel');
-    evt.currentTarget.classList.add("active");
-}
