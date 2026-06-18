@@ -16,7 +16,7 @@
         </header>
         <div class="content">
             <a href="tel:3602986031" class="contact-btn" aria-label="Call SSG Cruz at 360-298-6031">Call: (360) 298-6031</a>
-            <button id="openModalBtn" class="contact-btn" style="background: var(--army-gold); color: black;">Request Information</button>
+            <button id="openModalBtn" class="contact-btn btn-gold">Request Information</button>
         </div>
     </main>
 
@@ -30,11 +30,9 @@
         <div class="footer-links"> 
             <a href="https://www.goarmy.com" target="_blank" rel="noopener">Want to learn more? | GoArmy.com</a>
         </div>
-        
-    
     </footer>
 
-    <div id="applyModal" role="dialog" aria-labelledby="modal-title" aria-modal="true" hidden>
+    <div id="applyModal" class="modal-wrapper" role="dialog" aria-labelledby="modal-title" aria-modal="true" hidden>
         <div class="modal-content">
             <h2 id="modal-title">Contact SSG CRUZ</h2>
             <form id="hookForm" autocomplete="on">
@@ -86,8 +84,8 @@
                 </div>
 
                 <div class="captcha-container">
-                    <span id="captcha-question">Loading...</span>
-                    <input type="number" id="captcha-input" required aria-label="Captcha Answer">
+                    <label id="captcha-question" for="captcha-input">Loading...</label>
+                    <input type="number" id="captcha-input" required placeholder="?">
                 </div>
                 
                 <button type="submit" id="submitBtn" class="contact-btn">Submit Information</button>
@@ -96,6 +94,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+   <script src="script.js"></script>
 </body>
 </html>
