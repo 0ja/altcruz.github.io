@@ -75,7 +75,8 @@ document.getElementById('hookForm')?.addEventListener('submit', function(e) {
     };
 
     // YOUR SECURE CLOUDFLARE TUNNEL ENDPOINT
-    const PI_BACKEND_URL = 'https://cameron-toll-ourselves-compatibility.trycloudflare.com/api/submit-lead';
+// Paste this exact line into your script.js file on GitHub:
+const PI_BACKEND_URL = 'https://ringtones-bye-fighting-vehicle.trycloudflare.com/api/submit-lead';
 
     // Post to your Raspberry Pi backend, passing the method and the payload
     fetch(PI_BACKEND_URL, {
