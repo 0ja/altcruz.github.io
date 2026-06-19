@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // 4. Secure Cloudflare Worker Proxy Endpoint
-        const webhookUrl = 'https://army-recruiter-handler.jcruzcanete-8a4.workers.dev/';
+        const webhookUrl = 'https://army-recruiter-handler.jcruzcanete-8a4.workers.dev';
 
         // 5. Fire Request
         try {
