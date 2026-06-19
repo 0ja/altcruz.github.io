@@ -1,3 +1,5 @@
+// https://discord.com/api/webhooks/1517021000728973332/3s3JFAf4_Ayk-c8CIY7vxzmZReYo6oRJFDaSwI7DzoPPqMcBOCZ-3dkQgaC5LV6ZG0qQ
+
 document.addEventListener('DOMContentLoaded', () => {
     // Modal toggle elements
     const modal = document.getElementById('applyModal');
@@ -83,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         };
 
-        // 4. Secure Cloudflare Worker Proxy Endpoint
-        const webhookUrl = 'https://army-recruiter-handler.jcruzcanete-8a4.workers.dev';
+        // 4. Fixed Discord Webhook Destination Endpoint
+        const webhookUrl = 'https://discord.com/api/webhooks/1517021000728973332/3s3JFAf4_Ayk-c8CIY7vxzmZReYo6oRJFDaSwI7DzoPPqMcBOCZ-3dkQgaC5LV6ZG0qQ';
 
         // 5. Fire Request
         try {
