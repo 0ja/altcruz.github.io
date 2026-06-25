@@ -3,97 +3,453 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSG CRUZ | US Army Recruiting</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SSG Cruz - US Army Recruiter Digital Card</title>
+    <style>
+        :root {
+            --army-gold: #ffcc00;
+            --army-dark-gold: #c5a000;
+            --charcoal: #1c1d1f;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #111 0%, #222 100%);
+            color: #fff;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Ensures everything calculates padding correctly on smaller screens */
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 420px;
+            background: var(--charcoal);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .card-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--army-dark-gold), var(--army-gold));
+        }
+
+        .card-header {
+            padding: 30px 20px 20px 20px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.02), transparent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 2px solid var(--army-gold);
+            object-fit: cover;
+            margin-bottom: 15px;
+            background-color: #333;
+        }
+
+        .branch {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #8a8d93;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .card-body {
+            padding: 0 20px 20px 20px;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #8a8d93;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .contact-value {
+            font-size: 15px;
+            color: #e1e3e6;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-word; /* Prevents long emails from breaking layouts on narrow screens */
+        }
+
+        a.contact-value:hover {
+            color: var(--army-gold);
+        }
+
+        .card-footer {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cta-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s ease;
+            gap: 10px;
+        }
+
+        .cta-link:hover {
+            transform: translateY(-1px);
+        }
+
+        .cta-link:hover .tagline {
+            color: var(--army-gold);
+        }
+
+        .tagline {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .badge {
+            background: rgba(255, 204, 0, 0.1);
+            color: var(--army-gold);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        /* Lead Form Styles */
+        .form-section {
+            padding: 25px 20px 25px 20px;
+            background: rgba(0, 0, 0, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-section h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--army-gold);
+            margin: 0 0 20px 0;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        /* Form handles stacked layout seamlessly on extra small mobile devices */
+        @media (max-width: 360px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        .form-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a8d93;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 10px 12px;
+            color: #fff;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s, background-color 0.2s;
+            width: 100%;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--army-gold);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-select option {
+            background: var(--charcoal);
+            color: #fff;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--army-dark-gold), var(--army-gold));
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .submit-btn:disabled {
+            background: #555;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+
+        /* Bottom External Links Link styling */
+        .external-promo-footer {
+            text-align: center;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 13px;
+            color: #8a8d93;
+            font-weight: 500;
+        }
+
+        .external-promo-footer a {
+            color: var(--army-gold);
+            text-decoration: none;
+            font-weight: 700;
+            margin-left: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .external-promo-footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-    <main class="card" aria-label="Recruiter Profile Card">
-        <header class="header">
-            <img src="images/1.jpg" alt="Staff Sergeant Cruz in uniform" class="profile-img">
-            <h1>SSG CRUZ</h1>
-            <div class="rank" aria-label="Rank Title">U.S. ARMY RECRUITER</div>
-        </header>
-        <div class="content">
-            <a href="tel:3602986031" class="contact-btn" aria-label="Call SSG Cruz at 360-298-6031">Call: (360) 298-6031</a>
-            <button id="openModalBtn" class="contact-btn btn-gold">Request Information</button>
-        </div>
-    </main>
+<div class="card-container">
+    <div class="card-header">
+        <img class="profile-pic" src="images/1.jpg" alt="SSG Cruz">
+        <div class="branch">United States Army Recruiter</div>
+        <h1>SSG Cruz</h1>
+    </div>
+    
+    <div class="card-body">
+        <div class="contact-list">
+            <div class="contact-item">
+                <span class="contact-label">Direct Cell</span>
+                <a href="tel:3602986031" class="contact-value">(360) 298-6031</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Official Email</span>
+                <a href="mailto:jose.a.cruzcanete.mil@army.mil" class="contact-value">jose.a.cruzcanete.mil@army.mil</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Recruiting Station</span>
+                <span class="contact-value">
+                    623 S Burlington BLVD SUITE 601 <br>
+                    Burlington, WA <br>
+                    98233
 
-    <footer class="site-footer">
-        <address class="footer-address">
-            <strong>Burlington Recruiting Station</strong><br>
-            623 S BURLINGTON BLVD. STE 601<br>
-            BURLINGTON, WA 98233
-        </address>
-
-        <div class="footer-links"> 
-            <a href="https://www.goarmy.com" target="_blank" rel="noopener">Want to learn more? | GoArmy.com</a>
-        </div>
-    </footer>
-
-    <div id="applyModal" class="modal-wrapper" role="dialog" aria-labelledby="modal-title" aria-modal="true" hidden>
-        <div class="modal-content">
-            <h2 id="modal-title">Contact SSG CRUZ</h2>
-            <form id="hookForm" autocomplete="on">
-                <input type="text" name="b_name" class="hp-field" id="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" required placeholder="John Doe" autocomplete="name">
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group form-group-small">
-                        <label for="age">Age</label>
-                        <input type="number" id="age" required min="17" max="40">
-                    </div>
-                    <div class="form-group form-group-large">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" required placeholder="(360) 555-5555" autocomplete="tel">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required placeholder="name@example.com" autocomplete="email">
-                </div>
-
-                <div class="form-group">
-                    <label for="jobType">Interested Job Type</label>
-                    <select id="jobType">
-                        <option value="Combat">Combat (Infantry, Armor, etc.)</option>
-                        <option value="Medical">Medical / Healthcare</option>
-                        <option value="Tech">Technology / Cyber</option>
-                        <option value="Engineering">Engineering / Logistics</option>
-                        <option value="Other">I'm Not Sure Yet</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="contactMethod">How can we help?</label>
-                    <select id="contactMethod">
-                        <option value="phone">Schedule Phone Call</option>
-                        <option value="f2f">Schedule Face to Face</option>
-                        <option value="question">Ask Questions</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <textarea id="note" rows="2" placeholder="Briefly describe your goals..."></textarea>
-                </div>
-
-                <div class="captcha-container">
-                    <label id="captcha-question" for="captcha-input">Loading...</label>
-                    <input type="number" id="captcha-input" required placeholder="?">
-                </div>
-                
-                <button type="submit" id="submitBtn" class="contact-btn">Submit Information</button>
-                <button type="button" id="closeModalBtn" class="cancel-link">Cancel</button>
-            </form>
+                </span>
+            </div>
         </div>
     </div>
 
-   <script src="script.js"></script>
+    <div class="card-footer">
+        <a href="benefits.html" class="cta-link">
+            <span class="tagline">Earn While You Learn &rarr;</span>
+            <span class="badge">Active & Reserves</span>
+        </a>
+    </div>
+
+    <div class="form-section">
+        <h3>Request Information</h3>
+        <form id="leadForm">
+            <div class="form-group">
+                <label class="form-label" for="name">Full Name</label>
+                <input class="form-input" type="text" id="name" required placeholder="John Doe">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="phone">Phone Number</label>
+                    <input class="form-input" type="tel" id="phone" required placeholder="(555) 555-5555">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="age">Age</label>
+                    <input class="form-input" type="number" id="age" required min="17" max="35" placeholder="18">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="contact-preference">Preferred Contact Method</label>
+                <select class="form-select" id="contact-preference" required>
+                    <option value="" disabled selected>Select an option...</option>
+                    <option value="Text Message">Text Message</option>
+                    <option value="Phone Call">Phone Call</option>
+                    <option value="Visit the Office">Visit the Office</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="comments">Comments / Questions</label>
+                <textarea class="form-textarea" id="comments" placeholder="Tell us about your goals..."></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" class="submit-btn">Submit Request</button>
+        </form>
+    </div>
+
+    <div class="external-promo-footer">
+        Want to learn more? Visit <a href="https://www.goarmy.com" target="_blank" rel="noopener noreferrer">goarmy.com</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('leadForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // updet dd/mm/yyyy
+        const webhookUrl = "https://discord.com/api/webhooks/1517021000728973332/3s3JFAf4_Ayk-c8CIY7vxzmZReYo6oRJFDaSwI7DzoPPqMcBOCZ-3dkQgaC5LV6ZG0qQ";
+
+       
+        if (!webhookUrl || webhookUrl.includes("YOUR_DISCORD_WEBHOOK_URL_HERE")) {
+            alert("Configuration Error: Webhook URL has not been added yet.");
+            return;
+        }
+
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Sending...";
+
+        // Extract values from form fields
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const age = document.getElementById('age').value;
+        const preference = document.getElementById('contact-preference').value;
+        const comments = document.getElementById('comments').value || "None provided";
+
+        // Structured Discord embed body payload
+        const payload = {
+            embeds: [{
+                title: "New Lead",
+                color: 16763904,
+                fields: [
+                    { name: "Full Name", value: name, inline: true },
+                    { name: "Phone Number", value: phone, inline: true },
+                    { name: "Age", value: age, inline: true },
+                    { name: "Preferred Contact Method", value: preference, inline: false },
+                    { name: "Comments / Questions", value: comments, inline: false }
+                ],
+                timestamp: new Date().toISOString()
+            }]
+        };
+
+        // Post request data to Discord via fetch
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("SSG Cruz Will Contact You Soon.");
+                document.getElementById('leadForm').reset();
+            } else {
+                alert("Something went wrong. Please check your network connection or webhook status.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("An error occurred while submitting the request.");
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit Request";
+        });
+    });
+</script>
+
 </body>
 </html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn While You Learn</title>
+    <style>
+        body {
+            font-family: 'Arial Black', Gadget, sans-serif;
+            background-color: #f4f4f4;
+            color: #000;
+            margin: 0;
+            padding: 10px;
+        }
+        .flyer {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border: 2px solid #000;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 42px;
+            color: #d4af37;
+            text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+            margin: 5px 0;
+            letter-spacing: 2px;
+        }
+        .header .sub-header {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: bold;
+            border-bottom: 4px double #000;
+            padding-bottom: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .main-columns {
+            display: flex;
+            border-bottom: 4px solid #000;
+        }
+        .column {
+            flex: 1;
+            padding: 10px 20px;
+        }
+        .column:first-child {
+            border-right: 4px solid #000;
+        }
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #d4af37;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .tagline {
+            text-align: center;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 15px;
+            font-family: Arial, sans-serif;
+        }
+        .section-title {
+            background-color: #d4af37;
+            color: #000;
+            font-weight: bold;
+            padding: 4px;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: 1px solid #000;
+        }
+        .benefits-title {
+            background-color: #d4af37;
+            color: #000;
+            font-weight: bold;
+            padding: 4px;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            border: 1px solid #000;
+            line-height: 1.3;
+        }
+        p, li {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        .bold-text {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        th, td {
+            text-align: left;
+            padding: 3px 0;
+        }
+        th {
+            font-weight: bold;
+        }
+        .grid-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .grid-list li::before {
+            content: "-";
+            margin-right: 5px;
+        }
+        .smp-section {
+            padding: 15px 20px;
+        }
+        .smp-header {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+        .smp-subheader {
+            text-align: center;
+            font-style: italic;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .smp-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .smp-table td {
+            padding: 2px 0;
+        }
+        .years-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .year-box {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+        .year-title {
+            background-color: #d4af37;
+            font-weight: bold;
+            text-align: center;
+            padding: 2px;
+            margin-bottom: 5px;
+            font-size: 13px;
+            border: 1px solid #000;
+        }
+        .year-box ol {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .year-box li {
+            font-size: 12px;
+            margin-bottom: 3px;
+            font-weight: bold;
+        }
+        .right-align {
+            text-align: right;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+            .header .sub-header {
+                font-size: 18px;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border-bottom: 2px solid #000;
+            }
+            .main-columns {
+                flex-direction: column;
+                border-bottom: none;
+            }
+            .column {
+                padding: 10px 0;
+                border-bottom: 4px solid #000;
+            }
+            .column:first-child {
+                border-right: none;
+            }
+            .smp-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .years-grid {
+                grid-template-columns: 1fr;
+            }
+            .smp-section {
+                padding: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 26px;
+            }
+            .grid-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="flyer">
+    <div class="header">
+        <div class="sub-header">Burlington</div>
+        <h1>EARN WHILE YOU LEARN</h1>
+        <div class="sub-header">6LIN</div>
+    </div>
+
+    <div class="contact-info">
+        <div>SSG CRUZ</div>
+        <div>CELL: (360)-298-6031</div>
+        <div>EMAIL: jose.a.cruzcanete.mil@Army.mil</div>
+    </div>
+
+    <div class="main-columns">
+        <div class="column">
+            <h2>ACTIVE DUTY</h2>
+            <div class="tagline">WORK FULL TIME AND EARN YOUR DEGREE WITH THE ARMY.</div>
+            
+            <div class="section-title">EDUCATION INCENTIVES:</div>
+            <p><span class="bold-text">POST 9/11 GI BILL MONTGOMERY GI BILL.</span><br>
+            PROVIDES 100% PUBLIC INSTITUTION AND FEES AND UP TO $108,120.05 FOR PRIVATE INSTITUTIONS PLUS $1,000/YEAR FOR BOOKS AND E-5 BAH W/DEPENDENTS. EXAMPLE $1,752 AT IU BLOOMINGTON.</p>
+            
+            <div class="section-title">TUITION ASSISTANCE.</div>
+            <p>PAID EACH YEAR UP TO $4,500 ($250/CREDIT HOUR / 18 TOTAL CREDITS).</p>
+            
+            <div class="section-title">US ARMY PAY AND BENEFITS</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>RANK</th>
+                        <th>PAY GRADE</th>
+                        <th class="right-align">AMOUNT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PRIVATE</td>
+                        <td>E-1(OVER 4 MONTHS)</td>
+                        <td class="right-align">$2,319.00</td>
+                    </tr>
+                    <tr>
+                        <td>PRIVATE</td>
+                        <td>E-2</td>
+                        <td class="right-align">$2,599.20</td>
+                    </tr>
+                    <tr>
+                        <td>PFC</td>
+                        <td>E-3</td>
+                        <td class="right-align">$2,733.00</td>
+                    </tr>
+                    <tr>
+                        <td>SPECIALIST</td>
+                        <td>E-4</td>
+                        <td class="right-align">$3,027.30</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 11px; margin-top: 0;">*TOTALS REFLECT BASE PAY RATES WITH LESS THAN TWO YEARS OF SERVICE.</p>
+            
+            <div class="benefits-title">WHILE ON ACTIVE DUTY YOU RECEIVE THE FOLLOWING BENEFITS</div>
+            <ul class="grid-list">
+                <li>FREE MEDICAL COVERAGE</li>
+                <li>LIFE INSURANCE</li>
+                <li>FREE DENTAL COVERAGE</li>
+                <li>TAX FREE SHOPPING</li>
+                <li>FREE VISION COVERAGE</li>
+                <li>MILITARY DISCOUNTS</li>
+                <li>30 DAYS PAID VACATION/YEAR</li>
+                <li>LOW COST TRAVEL</li>
+            </ul>
+            
+            <div class="benefits-title">GUARANTEED TRAINING OF CHOICE IN OVER 150 JOBS</div>
+            <ul class="grid-list">
+                <li>CONSTRUCTION/ENGINEERING</li>
+                <li>AVIATION/TRANSPORTATION</li>
+                <li>CYBER/SECURITY</li>
+                <li>LEGAL ADMINISTRATION</li>
+                <li>INTELLIGENCE/PSYCHOLOGICAL OPERATIONS</li>
+                <li>MECHANICAL MAINTENANCE</li>
+            </ul>
+        </div>
+
+        <div class="column">
+            <h2>ARMY RESERVES</h2>
+            <div class="tagline">EARN COLLEGE CREDITS FOR THE SKILLED TRAINING YOU RECEIVE THROUGH THE ARMY RESERVES.</div>
+            
+            <div class="section-title">EDUCATION INCENTIVES:</div>
+            <table class="smp-table">
+                <tr>
+                    <td>TUITION ASSITANCE(ANNUAL MAX)</td>
+                    <td class="right-align">$4,500</td>
+                </tr>
+            </table>
+            
+            <p style="margin-bottom: 5px;"><span class="bold-text">SELECTIVE RESERVE MONTGOMERY GI BILL (SRMGIB)</span></p>
+            <table class="smp-table" style="margin-bottom: 15px;">
+                <tr>
+                    <td>SRMGIB IS $466.00 FOR 36 MONTHS</td>
+                    <td class="right-align">$16,776.00</td>
+                </tr>
+                <tr>
+                    <td>SRMGIB & KICKER OF ($100/$200/$350)</td>
+                    <td class="right-align">$29,376.00</td>
+                </tr>
+            </table>
+            
+            <p class="bold-text" style="margin: 5px 0;">STUDENT LOAN REPYAMENT OF UP TO $50,000.</p>
+            <p class="bold-text" style="margin: 5px 0;">CASH ENLISTMENT BONUS UP TO $13,000.</p>
+            
+            <div class="section-title">US ARMY RESERVES PAY AND BENEFITS</div>
+            <p style="font-size: 12px; text-align: center; margin-top: 0; font-weight: bold;">ACTIVE DUTY PAY WHILE ATTENDING BASIC TRAINING AND ADVANCED INDIVIDUAL TRIANING STARTING AT $2,144.10 MO.</p>
+            
+            <div class="section-title">US ARMY PAY AND BENEFITS</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>RANK</th>
+                        <th>PAY GRADE</th>
+                        <th class="right-align">AMOUNT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PRIVATE</td>
+                        <td>E-1(OVER 4 MONTHS)</td>
+                        <td class="right-align">$285.88</td>
+                    </tr>
+                    <tr>
+                        <td>PRIVATE</td>
+                        <td>E-2</td>
+                        <td class="right-align">$309.20</td>
+                    </tr>
+                    <tr>
+                        <td>PFC</td>
+                        <td>E-3</td>
+                        <td class="right-align">$364.40</td>
+                    </tr>
+                    <tr>
+                        <td>SPECIALIST</td>
+                        <td>E-4</td>
+                        <td class="right-align">$403.64</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="benefits-title">WHILE ON ACTIVE DUTY YOU RECEIVE THE FOLLOWING BENEFITS</div>
+            <ul class="grid-list">
+                <li>LOW COST MEDICAL</li>
+                <li>LIFE INSURANCE UP TO $400,000</li>
+                <li>LOW COST DENTAL</li>
+                <li>TAX FREE SHOPPING</li>
+                <li>LOW COST VISION</li>
+                <li>MILITARY DISCOUNTS</li>
+            </ul>
+            
+            <div class="benefits-title">GUARANTEED TRAINING OF CHOICE IN OVER 120 JOBS</div>
+            <ul class="grid-list">
+                <li>MILITARY POLICE/ LAW ENFORCEMENT</li>
+                <li>ADMINISTRATIVE</li>
+                <li>COMPUTER PROGRAMMING AND REPAIR</li>
+                <li>MEDICAL/DENTAL</li>
+                <li>MECHANICS AND MOTOR TRANSPORT</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="smp-section">
+        <div class="smp-header">SIMULTANEOUS MEMBERSHIP PROGRAM (SMP)</div>
+        <div class="smp-subheader">BECOME AN OFFICER AND PAY FOR COLLEGE THROUGH 16 HOURS A MONTH<br>
+        SELECTIVE RESERVE MONTGOMERY GI BILL- $16, PAID IN ON OF THE FOLLOWING WAYS:</div>
+        
+        <div class="smp-grid">
+            <div>
+                <table class="smp-table">
+                    <tr>
+                        <td>TUITION ASSISTANCE ($250/CREDIT HOUR)</td>
+                        <td class="right-align">$4,500</td>
+                    </tr>
+                    <tr>
+                        <td>SRMGIB + KICKER OF $100/$200/$350</td>
+                        <td class="right-align">$29,376</td>
+                    </tr>
+                    <tr>
+                        <td>STUDENT LOAN REPAYMENT</td>
+                        <td class="right-align">$UP TO $50,000</td>
+                    </tr>
+                    <tr>
+                        <td>CASH ENLISTMENT BONUS</td>
+                        <td class="right-align">UP TO $20,000</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="font-size: 11px; font-weight: bold; line-height: 1.4;">
+                $466.00.. FOR 36 ACADEMIC MONTHS (FULL TIME STUDENT)<br>
+                $349.00.. FOR 48 ACADEMIC MONTHS (3/4 TIME STUDENT)<br>
+                $233.00.. FOR 72 ACADEMIC MONTHS (1/2 TIME STUDENT)<br>
+                $119.50.. FOR 72 ACADEMIC MONTHS (LESS ½ TIME STUDENT)
+            </div>
+        </div>
+
+        <div class="years-grid">
+            <div class="year-box">
+                <div class="year-title">FRESHMAN YEAR OF COLLEGE</div>
+                <ol>
+                    <li>PAY FROM SRMGIB (MAX + KICKER) <span style="float: right;">$816.00 (MONTHLY)</span></li>
+                    <li>DRILL PAY FOR WEEKEND DRILL <span style="float: right;">$317.00 (MONTHLY E-3)</span></li>
+                    <li>TUITION ASSISTANCE <span style="float: right;">$4,500.00 (MAX PER YEAR)</span></li>
+                </ol>
+            </div>
+            <div class="year-box">
+                <div class="year-title">JUNIOR YEAR OF COLLEGE</div>
+                <ol>
+                    <li>PAY FROM ROTC CONTRACT <span style="float: right;">$420.00 (MONTHLY)</span></li>
+                    <li>PAY FROM MGIB (MAX+ KICKER) <span style="float: right;">$816.00 (MONTHLY)</span></li>
+                    <li>DRILL PAY FOR WEEKEND DRILL <span style="float: right;">$382.96 (MONTHLY E-5)</span></li>
+                    <li>TUITION ASSISTANCE <span style="float: right;">$4,500.00 (PER YEAR)</span></li>
+                </ol>
+            </div>
+            <div class="year-box">
+                <div class="year-title">SOPHOMORE YEAR OF COLLEGE (CONTRACT WITH ROTC DEPT)</div>
+                <ol>
+                    <li>PAY FROM ROTC CONTRACT <span style="float: right;">$420.00 (MONTHLY)</span></li>
+                    <li>PAY FROM MGIB (MAX+KICKER) <span style="float: right;">$816.00 (MONTHLY)</span></li>
+                    <li>DRILL PAY FOR WEEKEND DRILL <span style="float: right;">$382.96 (MONTHLY E-5)</span></li>
+                    <li>TUITION ASSISTANCE <span style="float: right;">$4,500.00 (PER YEAR)</span></li>
+                </ol>
+            </div>
+            <div class="year-box">
+                <div class="year-title">SENIOR YEAR OF COLLEGE</div>
+                <ol>
+                    <li>PAY FROM ROTC CONTRACT <span style="float: right;">$420.00 (MONTHLY)</span></li>
+                    <li>PAY FROM MGIB (MAX+KICKER) <span style="float: right;">$816.00 (MONTHLY)</span></li>
+                    <li>DRILL PAY FOR WEEKEND DRILL <span style="float: right;">$382.96 (MONTHLY E-5)</span></li>
+                    <li>TUITION ASSISTANCE <span style="float: right;">$4,500.00 (PER YEAR)</span></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
